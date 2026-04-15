@@ -20,7 +20,10 @@ sticky_rank: 1
   <div class="flex flex-wrap gap-2">
     <button id="show-all" class="px-3 py-1 bg-gray-200 rounded mr-2">All</button>
     <button id="show-csa" class="px-3 py-1 bg-blue-200 rounded mr-2">CSA</button>
-    <button id="show-csp" class="px-3 py-1 bg-blue-200 rounded">CSP</button>
+    <button id="show-csp" class="px-3 py-1 bg-blue-200 rounded mr-2">CSP</button>
+    <a href="{% post_url 2026-04-13-capstone_home_documentation %}" class="inline-flex items-center px-3 py-1 bg-white border border-gray-300 rounded text-sm text-slate-900 hover:bg-gray-100" title="Open Capstone Home Documentation">
+      <span class="mr-2">📄</span>Documentation
+    </a>
   </div>
   <div class="flex flex-col items-start sm:items-end">
     <input id="project-search" type="search" placeholder="Search projects, descriptions, or team members" class="w-full min-w-[240px] rounded-lg border border-gray-300 bg-white/90 px-4 py-2 text-sm text-slate-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300" />
@@ -370,7 +373,7 @@ Below are the capstone infographic pages created by student groups. Click an ima
    </div>
 
    <!-- Binary Beasts -->
-   <div class="flex items-start space-x-4 p-4 border rounded-lg capstone-item CSA">
+   <div class="flex items-start space-x-4 p-4 border rounded-lg capstone-item CSP">
        <a href="{% post_url 2026-03-06-pybl-capstone %}">
            <img src="/images/capstone/pybl.png" alt="PYBL capstone preview image" class="w-28 h-28 object-cover rounded" />
        </a>
@@ -449,8 +452,8 @@ Below are the capstone infographic pages created by student groups. Click an ima
        </a>
        <div>
            <h3 class="text-lg font-semibold"><a href="{% post_url 2026-03-05-uesl-capstone %}">UESL Foundation</a></h3>
-           <p class="text-sm text-gray-700">Empowering individuals with intellectual and developmental disabilities through year-round esports and community programs across San Diego and Imperial Counties.</p>
-           <p class="text-xs text-gray-500 mt-2">Team: Rudra Darshan Sathwik</p>
+           <p class="text-sm text-gray-700">Built an AI chatbot, accessible game engine with 8 IDD-friendly modes, and a social platform to extend UESL's reach for individuals with intellectual and developmental disabilities across San Diego.</p>
+           <p class="text-xs text-gray-500 mt-2">Team: Sathwik Kintada, Rudra B Joshi, Darshan</p>
        </div>
    </div>
 
