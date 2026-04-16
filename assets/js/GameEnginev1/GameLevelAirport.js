@@ -397,6 +397,99 @@ class GameLevelAirport {
       }
     };
 
+    const sprite_src_quant = path + "/images/gamify/stockupdatepc.png";
+    const sprite_data_quant = {
+      id: 'Quant-NPC',
+      greeting: "I am Quant Bot, your guide to data-driven trading systems.",
+      src: sprite_src_quant,
+      SCALE_FACTOR: 1.55,
+      ANIMATION_RATE: 50,
+      pixels: { height: 1068, width: 1078 },
+      INIT_POSITION: { x: width * 0.9, y: height * 0.38 },
+      orientation: { rows: 1, columns: 1 },
+      down: { row: 0, start: 0, columns: 1 },
+      hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
+      reaction: function () {
+        function openInModal(url) {
+          openReusableModal('quantModal', 'quantFrame', url);
+        }
+
+        function quantGameUrl() {
+          const game = gameEnv.game;
+          const personId = game && game.id ? game.id : "";
+          const balance = game && Number.isFinite(Number(game.balance)) ? Number(game.balance) : "";
+          return `${pagesURI}/gamify/fortuneFinders/quant?personId=${encodeURIComponent(personId)}&balance=${encodeURIComponent(balance)}`;
+        }
+
+        const dialogFunctions = {
+          intro: function() {
+            showDialogBox(
+              "Quant Bot",
+              "I am Quant Bot, your guide to algorithmic strategy.\nReady to test indicators, ML forecasting, sentiment, backtesting, and paper trading?",
+              [
+                { label: "Start Quant Challenge", action: () => dialogFunctions.launchQuant() },
+                { label: "What is quant trading?", action: () => dialogFunctions.explainQuant(), keepOpen: true },
+                { label: "Give me a tip first", action: () => dialogFunctions.quantTip(), keepOpen: true },
+                { label: "Maybe later", action: () => {} }
+              ]
+            );
+          },
+          explainQuant: function() {
+            showDialogBox(
+              "Quant Bot",
+              "Quant trading uses data and rules to remove emotion from decisions.\nIn your challenge, you will load data, compute indicators, train an ML model, backtest a strategy, and paper trade.",
+              [
+                { label: "Open Quant Challenge", action: () => dialogFunctions.launchQuant() },
+                { label: "Back", action: () => dialogFunctions.intro(), keepOpen: true }
+              ]
+            );
+          },
+          quantTip: function() {
+            const tips = [
+              "Always validate your model on unseen dates. A perfect backtest can still fail live.",
+              "Use drawdown alongside returns. High returns with huge drawdown are usually unstable.",
+              "If changing horizon crushes performance, your edge may be short-term only.",
+              "Start with small paper trades and confirm behavior before scaling.",
+              "Signals are tools, not guarantees. Risk controls matter more than predictions."
+            ];
+            const tip = tips[Math.floor(Math.random() * tips.length)];
+            showDialogBox(
+              "Quant Bot Tip",
+              tip,
+              [
+                { label: "Open Quant Challenge", action: () => dialogFunctions.launchQuant() },
+                { label: "Another tip", action: () => dialogFunctions.quantTip(), keepOpen: true },
+                { label: "Back", action: () => dialogFunctions.intro(), keepOpen: true }
+              ]
+            );
+          },
+          launchQuant: function() {
+            const game = gameEnv.game;
+            if (game && game.giveNpcCookie) {
+              game.updateNpcProgress(game.id, sprite_data_quant.id);
+              game.giveNpcCookie(
+                sprite_data_quant.id,
+                "quant_challenge_started",
+                "Quant Bot unlocked. Complete the quant challenge tabs to improve your market instincts."
+              );
+            }
+            openInModal(quantGameUrl());
+          }
+        };
+
+        return dialogFunctions;
+      },
+      interact: async function () {
+        const game = gameEnv.game;
+        const npcProgressSystem = new NpcProgressSystem();
+        const allowed = await npcProgressSystem.checkNpcProgress(game, sprite_data_quant.id);
+        if (allowed) {
+          const dialogFunctions = sprite_data_quant.reaction();
+          dialogFunctions.intro();
+        }
+      }
+    };
+
     const sprite_src_fidelity = path + "/images/gamify/fidelitygirl.png";
     const sprite_data_fidelity = {
       id: 'Fidelity',
