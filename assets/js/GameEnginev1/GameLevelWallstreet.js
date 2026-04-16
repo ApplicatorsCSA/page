@@ -156,21 +156,6 @@ class GameLevelWallstreet {
       }
     };
 
-    const sprite_src_quant = path + "/images/gamify/stockupdatepc.png";
-    const sprite_data_quant = {
-      id: 'Quant-NPC',
-      greeting: "I am Quant Bot, your guide to data-driven trading systems.",
-      src: sprite_src_quant,
-      SCALE_FACTOR: 1.5,
-      ANIMATION_RATE: 50,
-      pixels: { height: 1068, width: 1078 },
-      INIT_POSITION: { x: width * 0.78, y: height * 0.32 },
-      orientation: { rows: 1, columns: 1 },
-      down: { row: 0, start: 0, columns: 1 },
-      hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
-      reaction: function () {
-
-
     const image_src_bank = path + "/images/gamify/bank.png";
 
     const spriteBank = {
@@ -230,7 +215,6 @@ class GameLevelWallstreet {
       { class: Npc, data: sprite_data_casino },
       { class: Npc, data: sprite_data_stocks },
       { class: Npc, data: sprite_data_crypto },
-      { class: Npc, data: sprite_data_quant },
       { class: Npc, data: sprite_data_bank },
       // {class: Npc, data: spriteBank},
     ];
