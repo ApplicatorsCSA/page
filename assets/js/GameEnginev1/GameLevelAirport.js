@@ -695,6 +695,7 @@ class GameLevelAirport {
       { class: Npc, data: sprite_data_crypto },
       { class: Npc, data: sprite_data_mining },
       { class: Npc, data: sprite_data_stocks},
+      { class: Npc, data: sprite_data_quant },
       { class: Npc, data: sprite_data_casino},
       { class: Npc, data: sprite_data_fidelity },
       { class: Npc, data: sprite_data_schwab },
